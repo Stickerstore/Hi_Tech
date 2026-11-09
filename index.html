@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi-TECH | هاي تك لطباعة الاستيكرات والداي كت</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c2185b;
+      --primary-dark: #8c0032;
+      --primary-light: #fdf2f8;
+      --secondary: #1e1b4b;
+      --bg-light: #f8fafc;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --white: #ffffff;
+      --radius: 16px;
+      --shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: var(--primary-light);
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+      padding: 35px 20px;
+      border-bottom: 1px solid #fbcfe8;
+    }
+
+    .hero-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .slogan {
+      display: inline-block;
+      background: var(--white);
+      color: var(--primary);
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: 2.1rem;
+      color: var(--secondary);
+      line-height: 1.3;
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+      display: block;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 12px 26px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Smart Calculator Card */
+    .calc-section {
+      max-width: 1150px;
+      margin: -20px auto 40px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .calc-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(194, 24, 91, 0.12);
+      border: 2px solid #fbcfe8;
+    }
+
+    .calc-header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .calc-header h2 {
+      color: var(--secondary);
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    .calc-header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 25px;
+      align-items: stretch;
+    }
+
+    .inputs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    .form-group label {
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 5px;
+      color: var(--secondary);
+    }
+
+    .form-group select, .form-group input {
+      padding: 10px 12px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .form-group select:focus, .form-group input:focus {
+      border-color: var(--primary);
+    }
+
+    .quick-qty {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .qty-chip {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid #f9a8d4;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .qty-chip:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* Result Box */
+    .result-box {
+      background: linear-gradient(145deg, #1e1b4b, #312e81);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.92rem;
+    }
+
+    .result-row strong {
+      color: #f472b6;
+    }
+
+    .price-highlight {
+      text-align: center;
+      margin: 16px 0;
+      background: rgba(255,255,255,0.08);
+      padding: 14px;
+      border-radius: 12px;
+    }
+
+    .price-highlight .unit-price {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .price-highlight .total-price {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #4ade80;
+      line-height: 1.2;
+    }
+
+    .btn-wa-order {
+      background: #25d366;
+      color: var(--white);
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+    }
+
+    .btn-wa-order:hover {
+      background: #1da851;
+    }
+
+    /* Standard Sections */
+    section {
+      max-width: 1150px;
+      margin: 45px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin-bottom: 22px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    /* Categories */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      text-align: center;
+    }
+
+    .cat-card {
+      background: var(--white);
+      padding: 18px 12px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-4px);
+      border: 1px solid var(--primary);
+    }
+
+    .cat-icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 10px;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      background: var(--primary-light);
+    }
+
+    .cat-card h3 {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    /* Products Grid */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .filter-select {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1.5px solid #cbd5e1;
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: var(--white);
+      min-width: 250px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-img {
+      height: 170px;
+      background: linear-gradient(135deg, #fce7f3, #e0e7ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+
+    .product-body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    .product-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .product-specs {
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .product-price {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 14px;
+      margin-top: auto;
+    }
+
+    /* Promo Banner */
+    .promo-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .promo-banner h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    /* Accordion & Design Box */
+    .two-col-sec {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .box-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .acc-item {
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .acc-item:last-child {
+      border-bottom: none;
+    }
+
+    .acc-header {
+      width: 100%;
+      text-align: right;
+      background: none;
+      border: none;
+      padding: 14px 4px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--secondary);
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .acc-body {
+      padding: 0 4px 14px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .acc-item.active .acc-body {
+      display: block;
+    }
+
+    .check-list {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    .check-list li {
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .check-list li::before {
+      content: "✔";
+      color: var(--primary);
+      background: var(--primary-light);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* Why Us */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+    }
+
+    .why-card {
+      background: var(--white);
+      padding: 20px 12px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: var(--white);
+      padding: 35px 20px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .wa-float {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #25d366;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      text-decoration: none;
+      z-index: 999;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner, .calc-grid, .two-col-sec {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 58px;
+        right: 0;
+        left: 0;
+        background: var(--white);
+        padding: 18px;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo">Hi-TECH <span>هاي تك للطباعة</span></a>
+    <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('show')">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#calculator">حاسبة الأسعار الفورية</a></li>
+      <li><a href="#categories">الأقسام</a></li>
+      <li><a href="#products">الباقات الجاهزة</a></li>
+      <li><a href="#design">طلب تصميم</a></li>
+    </ul>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="slogan">الجودة مش صدفة… الجودة قرار</div>
+        <h1>استيكرات مخصصة وداي كت <span>لشركتك ومشروعك في دقائق</span></h1>
+        <p>طباعة ديجيتال ألوان فائقة الدقة وقص إلكتروني (Die-Cut & Kiss-Cut) لجميع المقاسات؛ من ملصقات الكافيهات والمطاعم إلى عبوات التجميل والتغليف.</p>
+        <a href="#calculator" class="btn-primary">احسب سعر مقاسك الآن 👇</a>
+      </div>
+      <div style="text-align: center; font-size: 4.5rem;">
+        🏷️ ☕ 🧴
+      </div>
+    </div>
+  </div>
+
+  <!-- Smart Sheet & Sticker Calculator -->
+  <div class="calc-section" id="calculator">
+    <div class="calc-card">
+      <div class="calc-header">
+        <h2>حاسبة أسعار الاستيكر والداي كت الفورية 🧮</h2>
+        <p>أدخل المقاس والكمية ليتم حساب عدد الاستيكرات في الفرخ والسعر النهائي تلقائياً</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="inputs-grid">
+          <div class="form-group full">
+            <label>نوع الخامة</label>
+            <select id="matType" onchange="calculatePrice()">
+              <option value="vinyl_white">بلاستيك أبيض (ضد الماء والرطوبة)</option>
+              <option value="vinyl_clear">بلاستيك شفاف (ضد الماء)</option>
+              <option value="paper">استيكر ورق</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>العرض (سم)</label>
+            <input type="number" id="stWidth" value="4" min="1" max="28" step="0.5" oninput="calculatePrice()">
+          </div>
+
+          <div class="form-group">
+            <label>الطول (سم)</label>
+            <input type="number" id="stHeight" value="4" min="1" max="42" step="0.5" oninput="calculatePrice()">
+          </div>
+
+          <div class="form-group">
+            <label>طبقة الحماية (سلوفان +2 ج.م)</label>
+            <select id="lamType" onchange="calculatePrice()">
+              <option value="none">بدون سلوفان</option>
+              <option value="gloss">سلوفان لامع</option>
+              <option value="matte">سلوفان مط</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>نوع القص</label>
+            <select id="cutType" onchange="calculatePrice()">
+              <option value="kisscut">شيتات جاهزة للنزع (Kiss-Cut)</option>
+              <option value="diecut">قص فردي كامل (+5 ج.م للفرخ)</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label>الكمية المطلوبة (عدد الاستيكرات)</label>
+            <input type="number" id="reqQty" value="500" min="50" step="50" oninput="calculatePrice()">
+            <div class="quick-qty">
+              <span class="qty-chip" onclick="setQty(250)">250 قطعة</span>
+              <span class="qty-chip" onclick="setQty(500)">500 قطعة</span>
+              <span class="qty-chip" onclick="setQty(1000)">1000 قطعة</span>
+              <span class="qty-chip" onclick="setQty(5000)">5000 قطعة</span>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label>هل لديك تصميم جاهز للطباعة؟</label>
+            <select id="designStatus" onchange="calculatePrice()">
+              <option value="ready">نعم، لدي ملف التصميم جاهز</option>
+              <option value="need_design">لا، أرغب في تصميم استيكر جديد (+75 ج.م)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dynamic Output Box -->
+        <div class="result-box">
+          <div>
+            <div class="result-row">
+              <span>عدد الاستيكر في الفرخ الواحد:</span>
+              <strong id="outPerSheet">0 قطعة</strong>
+            </div>
+            <div class="result-row">
+              <span>إجمالي عدد الأفرخ المطلوبة:</span>
+              <strong id="outTotalSheets">0 فرخ</strong>
+            </div>
+            <div class="result-row">
+              <span>الكمية الفعلية المستلمة:</span>
+              <strong id="outActualQty">0 استيكر</strong>
+            </div>
+            <div class="result-row">
+              <span>قيمة الخصم المطبق:</span>
+              <strong id="outDiscount">0 ج.م</strong>
+            </div>
+          </div>
+
+          <div class="price-highlight">
+            <div class="unit-price">تكلفة الاستيكر الواحد: <strong id="outUnitPrice" style="color:#fff;">0.00</strong> ج.م</div>
+            <div class="total-price" id="outTotalPrice">0 ج.م</div>
+          </div>
+
+          <button class="btn-wa-order" onclick="sendCalculatedOrder()">
+            إرسال الطلب بالمواصفات عبر واتساب 💬
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Browse By Category -->
+  <section id="categories">
+    <h2 class="section-title">تصفح حسب نشاطك التجاري</h2>
+    <div class="categories-grid">
+      <div class="cat-card" onclick="applyPreset('paper', 5, 5, 'gloss', 1000)">
+        <div class="cat-icon">🍔</div>
+        <h3>مطاعم وحلويات</h3>
+      </div>
+      <div class="cat-card" onclick="applyPreset('vinyl_white', 4, 4, 'none', 1000)">
+        <div class="cat-icon">☕</div>
+        <h3>كافيهات وأكواب</h3>
+      </div>
+      <div class="cat-card" onclick="applyPreset('vinyl_clear', 5, 3, 'none', 500)">
+        <div class="cat-icon">🧴</div>
+        <h3>تجميل وعطور</h3>
+      </div>
+      <div class="cat-card" onclick="applyPreset('paper', 4, 4, 'matte', 250)">
+        <div class="cat-icon">🎉</div>
+        <h3>مناسبات وهدايا</h3>
+      </div>
+      <div class="cat-card" onclick="applyPreset('vinyl_white', 6, 6, 'matte', 500)">
+        <div class="cat-icon">✂️</div>
+        <h3>داي كت (Die-Cut)</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Packages -->
+  <section id="products">
+    <h2 class="section-title">الباقات الأكثر طلباً</h2>
+    <div class="filter-bar">
+      <select class="filter-select" id="materialFilter" onchange="filterProducts()">
+        <option value="all">فرز حسب الخامة: عرض الكل</option>
+        <option value="vinyl">بلاستيك ضد الماء</option>
+        <option value="paper">استيكر ورق</option>
+      </select>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card" data-material="vinyl">
+        <div class="product-img">🥤</div>
+        <div class="product-body">
+          <div class="product-title">استيكر أكواب كافيهات 4×4 سم</div>
+          <div class="product-sub">مقاوم للمياه والثلج والرطوبة بألوان زاهية.</div>
+          <div class="product-specs">
+            <div><strong>الخامة:</strong> بلاستيك أبيض أو شفاف</div>
+            <div><strong>المقاس:</strong> 4 × 4 سم (مقصوص جاهز للنزع)</div>
+          </div>
+          <div class="product-price">اضغط لحساب كميتك في الحاسبة</div>
+          <button class="btn-primary" onclick="applyPreset('vinyl_white', 4, 4, 'none', 1000)">اختر هذه الباقة</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-material="paper">
+        <div class="product-img">🌯</div>
+        <div class="product-body">
+          <div class="product-title">استيكر كريب وتغليف مطاعم 5×5 سم</div>
+          <div class="product-sub">لصق قوي على الورق والعلب الكرتونية والأكياس.</div>
+          <div class="product-specs">
+            <div><strong>الخامة:</strong> استيكر ورق+ سلوفان لامع</div>
+            <div><strong>المقاس:</strong> 5 × 5 سم</div>
+          </div>
+          <div class="product-price">اضغط لحساب كميتك في الحاسبة</div>
+          <button class="btn-primary" onclick="applyPreset('paper', 5, 5, 'gloss', 1000)">اختر هذه الباقة</button>
+        </div>
+      </div>
+
+      <div class="product-card" data-material="vinyl">
+        <div class="product-img">✨</div>
+        <div class="product-body">
+          <div class="product-title">استيكر عبوات تجميل وبرفانات</div>
+          <div class="product-sub">ثبات عالٍ ومقاومة للزيوت والمياه والكحول.</div>
+          <div class="product-specs">
+            <div><strong>الخامة:</strong> بلاستيك + طبقة سلوفان حماية</div>
+            <div><strong>المقاس:</strong> 5 × 3 سم (أو أي مقاس خاص)</div>
+          </div>
+          <div class="product-price">اضغط لحساب كميتك في الحاسبة</div>
+          <button class="btn-primary" onclick="applyPreset('vinyl_white', 5, 3, 'gloss', 500)">اختر هذه الباقة</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Banner -->
+  <section>
+    <div class="promo-banner">
+      <h2>عرض الـ 5000 استيكر للشركات والمطاعم 🚀</h2>
+      <p style="margin-bottom: 18px;">احصل على أعلى خصم على الأفرخ عند طلب كميات كبيرة مع أولوية التنفيذ السريع</p>
+      <button class="btn-primary" style="background: var(--white); color: var(--primary);" onclick="setQty(5000); location.href='#calculator'">احسب سعر الكميات الكبيرة الآن &gt;&gt;</button>
+    </div>
+  </section>
+
+  <!-- How to Order & Need Design -->
+  <section id="design">
+    <div class="two-col-sec">
+      <div class="box-card">
+        <h3 style="color: var(--secondary); font-size: 1.3rem; margin-bottom: 14px;">خطوات الطلب في دقائق</h3>
+        <div class="acc-item active">
+          <button class="acc-header" onclick="this.parentElement.classList.toggle('active')">
+            <span>1. حدد المقاس والخامة في الحاسبة</span><span>▾</span>
+          </button>
+          <div class="acc-body">أدخل الطول والعرض بالسنتيمتر واختر الخامة المناسبة لتظهر لك التكلفة الفورية.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" onclick="this.parentElement.classList.toggle('active')">
+            <span>2. أرسل الطلب عبر زر الواتساب</span><span>▾</span>
+          </button>
+          <div class="acc-body">تنتقل تفاصيل مقاسك وعدد الأفرخ والسعر تلقائياً في رسالة منظمة إلى فريقنا.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header" onclick="this.parentElement.classList.toggle('active')">
+            <span>3. مراجعة البروفة والطباعة الفورية</span><span>▾</span>
+          </button>
+          <div class="acc-body">نراجع معك ملف التصميم ومكان القص (Cut Line) قبل التشغيل لضمان أعلى دقة.</div>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <h3 style="color: var(--secondary); font-size: 1.3rem;">ليس لديك <span style="color: var(--primary);">تصميم جاهز؟</span></h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">فريق التصميم في هاي تك يجهز لك تصميم استيكر احترافي جاهز للطباعة والقص مقابل 75 جنيهاً.</p>
+        <ul class="check-list">
+          <li>تصميم بأي شكل: دائري، بيضاوي، مربع، أو مفرغ حول الشعار</li>
+          <li>ضبط ألوان الطباعة ومسارات القص بدقة</li>
+          <li>مرونة في التعديلات حتى اعتمادك النهائي للبروفة</li>
+        </ul>
+        <button class="btn-primary" style="width: 100%;" onclick="requestDesignOnly()">تحدث مع المصمم عبر واتساب ←</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Hi-TECH -->
+  <section>
+    <h2 class="section-title">لماذا تختار Hi-TECH؟</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div style="font-size: 2rem;">⚡</div>
+        <h4 style="margin-top:8px;">سرعة في التسليم</h4>
+      </div>
+      <div class="why-card">
+        <div style="font-size: 2rem;">🎯</div>
+        <h4 style="margin-top:8px;">قص إلكتروني دقيق</h4>
+      </div>
+      <div class="why-card">
+        <div style="font-size: 2rem;">📐</div>
+        <h4 style="margin-top:8px;">أي مقاس أو شكل</h4>
+      </div>
+      <div class="why-card">
+        <div style="font-size: 2rem;">💎</div>
+        <h4 style="margin-top:8px;">ألوان ديجيتال ثابتة</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3 style="font-size: 1.7rem; margin-bottom: 10px;">Hi-TECH | هاي تك</h3>
+    <p>للطباعة الرقمية والإعلان والتغليف</p>
+    <p style="margin-top: 8px;">📍 القاهرة - الظاهر ، مصر | 📞 واتساب: 01228642530</p>
+    <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.85;">© جميع الحقوق محفوظة لـ Hi-TECH</p>
+  </footer>
+
+  <a href="https://wa.me/201228642530" target="_blank" class="wa-float" title="تواصل معنا">💬</a>
+
+  <script>
+    const CONFIG = {
+      whatsappNumber: "201228642530",
+      netSheetWidth: 29,
+      netSheetHeight: 43,
+      gapCm: 0.3,
+
+      sheetPrices: {
+        paper: 23,
+        vinyl_white: 60,
+        vinyl_clear: 60
+      },
+
+      laminationCostPerSheet: 2,  // تكلفة سلوفان الحماية للفرخ
+      dieCutExtraPerSheet: 5,     // فرق سعر القص العادي (Die-Cut)
+      designFee: 75,              // رسوم التصميم المخصص
+      minSheets: 4                // الحد الأدنى للطلب (4 أفرخ)
+    };
+
+    let currentCalc = {};
+
+    function setQty(q) {
+      document.getElementById('reqQty').value = q;
+      calculatePrice();
+    }
+
+    function applyPreset(mat, w, h, lam, qty) {
+      document.getElementById('matType').value = mat;
+      document.getElementById('stWidth').value = w;
+      document.getElementById('stHeight').value = h;
+      document.getElementById('lamType').value = lam;
+      document.getElementById('reqQty').value = qty;
+      calculatePrice();
+      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function calculatePrice() {
+      const mat = document.getElementById('matType').value;
+      const w = parseFloat(document.getElementById('stWidth').value) || 4;
+      const h = parseFloat(document.getElementById('stHeight').value) || 4;
+      const lam = document.getElementById('lamType').value;
+      const cut = document.getElementById('cutType').value;
+      const reqQty = parseInt(document.getElementById('reqQty').value) || 100;
+      const design = document.getElementById('designStatus').value;
+
+      // حساب عدد الاستيكرات في الفرخ الواحد
+      const fitA = Math.floor((CONFIG.netSheetWidth + CONFIG.gapCm) / (w + CONFIG.gapCm)) *
+                   Math.floor((CONFIG.netSheetHeight + CONFIG.gapCm) / (h + CONFIG.gapCm));
+
+      const fitB = Math.floor((CONFIG.netSheetWidth + CONFIG.gapCm) / (h + CONFIG.gapCm)) *
+                   Math.floor((CONFIG.netSheetHeight + CONFIG.gapCm) / (w + CONFIG.gapCm));
+
+      const perSheet = Math.max(fitA, fitB, 1);
+      
+      // حساب عدد الأفرخ مع تطبيق الحد الأدنى (4 أفرخ)
+      let totalSheets = Math.ceil(reqQty / perSheet);
+      if (totalSheets < CONFIG.minSheets) {
+        totalSheets = CONFIG.minSheets;
+      }
+      const actualQty = totalSheets * perSheet;
+
+      // حساب سعر الفرخ الأساسي
+      let baseSheetCost = CONFIG.sheetPrices[mat];
+      if (lam !== 'none') baseSheetCost += CONFIG.laminationCostPerSheet;
+      if (cut === 'diecut') baseSheetCost += CONFIG.dieCutExtraPerSheet;
+
+      // تطبيق الخصم بناءً على عدد الأفرخ (يقرأ من لوحة التحكم)
+      let discountPerSheet = 0;
+      if (totalSheets > 50) {
+        discountPerSheet = CONFIG.discountTier2;
+      } else if (totalSheets > 30) {
+        discountPerSheet = CONFIG.discountTier1;
+      }
+
+      const finalSheetCost = Math.max(baseSheetCost - discountPerSheet, 5);
+      let rawTotal = totalSheets * finalSheetCost;
+      let totalDiscountAmount = totalSheets * discountPerSheet;
+
+      if (design === 'need_design') {
+        rawTotal += CONFIG.designFee;
+      }
+
+      const finalTotal = Math.round(rawTotal);
+      const unitPrice = (finalTotal / actualQty).toFixed(2);
+
+      // تحديث الواجهة
+      document.getElementById('outPerSheet').innerText = perSheet + " قطعة";
+      document.getElementById('outTotalSheets').innerText = totalSheets + " فرخ";
+      document.getElementById('outActualQty').innerText = actualQty + " استيكر";
+      document.getElementById('outDiscount').innerText = totalDiscountAmount + " ج.م (" + discountPerSheet + " ج.م لكل فرخ)";
+      document.getElementById('outUnitPrice').innerText = unitPrice;
+      document.getElementById('outTotalPrice').innerText = finalTotal + " ج.م";
+
+      const matNames = {
+        vinyl_white: "بلاستيك أبيض ضد الماء",
+        vinyl_clear: "بلاستيك شفاف ضد الماء",
+        paper: "استيكر ورق"
+      };
+      const lamNames = { none: "بدون سلوفان", gloss: "سلوفان لامع", matte: "سلوفان مط" };
+      const cutNames = { kisscut: "شيتات (Kiss-Cut)", diecut: "قص فردي (Die-Cut)" };
+
+      currentCalc = {
+        matName: matNames[mat],
+        size: `${w} × ${h} سم`,
+        lamName: lamNames[lam],
+        cutName: cutNames[cut],
+        reqQty,
+        actualQty,
+        perSheet,
+        totalSheets,
+        discountPerSheet,
+        totalDiscountAmount,
+        designText: design === 'need_design' ? "مطلوب تصميم جديد (+75 ج.م)" : "التصميم جاهز",
+        unitPrice,
+        finalTotal
+      };
+    }
+
+    function sendCalculatedOrder() {
+      const c = currentCalc;
+      const text =
+        `مرحباً هاي تك، أرغب في تنفيذ طلبية استيكر بالمواصفات التالية:\n` +
+        `------------------------\n` +
+        `▪️ الخامة: ${c.matName}\n` +
+        `▪️ سلوفان الحماية: ${c.lamName}\n` +
+        `▪️ المقاس: ${c.size}\n` +
+        `▪️ نوع القص: ${c.cutName}\n` +
+        `▪️ الكمية الفعلية: ${c.actualQty} استيكر (${c.totalSheets} فرخ × ${c.perSheet} بالفرخ)\n` +
+        `▪️ خصم الأفرخ المطبق: ${c.totalDiscountAmount} ج.م (${c.discountPerSheet} ج.م خصم لكل فرخ)\n` +
+        `▪️ حالة التصميم: ${c.designText}\n` +
+        `------------------------\n` +
+        `💰 الإجمالي النهائي بالحاسبة: ${c.finalTotal} ج.م (${c.unitPrice} ج.م للقطعة)`;
+
+      window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function requestDesignOnly() {
+      const text = "مرحباً هاي تك، أرغب في تصميم استيكر مخصص لمشروعي ومعرفة التفاصيل.";
+      window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function filterProducts() {
+      const val = document.getElementById('materialFilter').value;
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.style.display = (val === 'all' || card.dataset.material === val) ? 'flex' : 'none';
+      });
+    }
+
+    
+    // --- Admin Panel Logic ---
+    const ADMIN_PASS = "1234"; // كلمة السر الافتراضية
+    
+    // تحميل الإعدادات المحفوظة إن وجدت
+    function loadSavedSettings() {
+      const saved = localStorage.getItem('hiTechSettings');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        CONFIG.sheetPrices.paper = parsed.paper;
+        CONFIG.sheetPrices.vinyl_white = parsed.vinyl_white;
+        CONFIG.sheetPrices.vinyl_clear = parsed.vinyl_clear;
+        CONFIG.laminationCostPerSheet = parsed.lam;
+        CONFIG.designFee = parsed.design;
+        CONFIG.minSheets = parsed.min_sheets;
+        // سنضيف متغيرات الخصم كخصائص في CONFIG
+        CONFIG.discountTier1 = parsed.disc_1 !== undefined ? parsed.disc_1 : 2;
+        CONFIG.discountTier2 = parsed.disc_2 !== undefined ? parsed.disc_2 : 3;
+      } else {
+        // القيم الافتراضية للخصومات إذا لم تكن محفوظة
+        CONFIG.discountTier1 = 2;
+        CONFIG.discountTier2 = 3;
+      }
+    }
+
+    function checkAdminPassword() {
+      const pass = document.getElementById('adminPassword').value;
+      if (pass === ADMIN_PASS) {
+        document.getElementById('loginSection').style.display = 'none';
+        document.getElementById('settingsSection').style.display = 'block';
+        document.getElementById('adminPassword').value = '';
+        document.getElementById('loginError').style.display = 'none';
+        
+        // تعبئة الحقول بالقيم الحالية
+        document.getElementById('set_paper').value = CONFIG.sheetPrices.paper;
+        document.getElementById('set_vinyl_white').value = CONFIG.sheetPrices.vinyl_white;
+        document.getElementById('set_vinyl_clear').value = CONFIG.sheetPrices.vinyl_clear;
+        document.getElementById('set_lam').value = CONFIG.laminationCostPerSheet;
+        document.getElementById('set_design').value = CONFIG.designFee;
+        document.getElementById('set_min_sheets').value = CONFIG.minSheets;
+        document.getElementById('set_disc_1').value = CONFIG.discountTier1;
+        document.getElementById('set_disc_2').value = CONFIG.discountTier2;
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+
+    function saveSettings() {
+      const newSettings = {
+        paper: parseFloat(document.getElementById('set_paper').value) || 23,
+        vinyl_white: parseFloat(document.getElementById('set_vinyl_white').value) || 60,
+        vinyl_clear: parseFloat(document.getElementById('set_vinyl_clear').value) || 60,
+        lam: parseFloat(document.getElementById('set_lam').value) || 2,
+        design: parseFloat(document.getElementById('set_design').value) || 75,
+        min_sheets: parseInt(document.getElementById('set_min_sheets').value) || 4,
+        disc_1: parseFloat(document.getElementById('set_disc_1').value) || 2,
+        disc_2: parseFloat(document.getElementById('set_disc_2').value) || 3
+      };
+      
+      localStorage.setItem('hiTechSettings', JSON.stringify(newSettings));
+      loadSavedSettings();
+      calculatePrice(); // إعادة حساب التسعير فوراً بالأسعار الجديدة
+      
+      alert('✅ تم حفظ الإعدادات وتطبيقها بنجاح!');
+      document.getElementById('adminOverlay').style.display = 'none';
+      document.getElementById('loginSection').style.display = 'block'; // إعادة تعيين الشاشة للرقم السري
+      document.getElementById('settingsSection').style.display = 'none';
+    }
+    
+    // تعديل دالة calculatePrice لتقرأ شرائح الخصم من المتغيرات الجديدة
+    // سيتم تنفيذ loadSavedSettings عند التحميل قبل calculatePrice
+
+    loadSavedSettings();
+    window.onload = calculatePrice;
+  </script>
+
+  <!-- Admin Panel Overlay -->
+  <div id="adminOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+    <div style="background: var(--white); width: 90%; max-width: 500px; border-radius: var(--radius); padding: 25px; box-shadow: var(--shadow); position: relative;">
+      <button onclick="document.getElementById('adminOverlay').style.display='none'" style="position: absolute; top: 15px; left: 15px; background: none; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer;">&times;</button>
+      <h3 style="color: var(--secondary); margin-bottom: 20px; font-weight: 800; text-align: center; border-bottom: 2px solid var(--primary-light); padding-bottom: 10px;">⚙️ لوحة تحكم الأسعار السرية</h3>
+      
+      <div id="loginSection">
+        <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">أدخل كلمة السر للوصول إلى الإعدادات</p>
+        <div class="form-group" style="margin-bottom: 15px;">
+          <input type="password" id="adminPassword" placeholder="كلمة السر..." style="text-align: center; font-size: 1.2rem; letter-spacing: 2px;">
+        </div>
+        <button class="btn-primary" style="width: 100%;" onclick="checkAdminPassword()">دخول</button>
+        <p id="loginError" style="color: red; text-align: center; margin-top: 10px; display: none; font-size: 0.85rem;">كلمة السر خاطئة!</p>
+      </div>
+
+      <div id="settingsSection" style="display: none; max-height: 60vh; overflow-y: auto; padding-right: 5px;">
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>سعر فرخ الكوشيه (ج.م)</label>
+          <input type="number" id="set_paper" class="admin-input">
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>سعر فرخ البلاستيك الأبيض (ج.م)</label>
+          <input type="number" id="set_vinyl_white" class="admin-input">
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>سعر فرخ البلاستيك الشفاف (ج.م)</label>
+          <input type="number" id="set_vinyl_clear" class="admin-input">
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>تكلفة السلوفان للفرخ (ج.م)</label>
+          <input type="number" id="set_lam" class="admin-input">
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>رسوم التصميم المخصص (ج.م)</label>
+          <input type="number" id="set_design" class="admin-input">
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>الحد الأدنى للأفرخ</label>
+          <input type="number" id="set_min_sheets" class="admin-input">
+        </div>
+        
+        <div style="background: var(--primary-light); padding: 15px; border-radius: 10px; margin: 20px 0;">
+          <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 0.95rem;">نظام الخصم (للفروخ)</h4>
+          <div class="form-group" style="margin-bottom: 10px;">
+            <label>قيمة الخصم إذا زاد الطلب عن 30 فرخ (ج.م)</label>
+            <input type="number" id="set_disc_1" class="admin-input">
+          </div>
+          <div class="form-group">
+            <label>قيمة الخصم إذا زاد الطلب عن 50 فرخ (ج.م)</label>
+            <input type="number" id="set_disc_2" class="admin-input">
+          </div>
+        </div>
+
+        <button class="btn-primary" style="width: 100%; background: #16a34a; margin-top: 10px;" onclick="saveSettings()">💾 حفظ التعديلات وتطبيقها</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret Admin Trigger -->
+  <div onclick="document.getElementById('adminOverlay').style.display='flex'" style="position: fixed; bottom: 20px; right: 20px; width: 40px; height: 40px; z-index: 100; cursor: pointer; opacity: 0;" title="إعدادات سرية"></div>
+</body>
+</html>
